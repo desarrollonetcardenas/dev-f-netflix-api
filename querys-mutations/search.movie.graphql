@@ -1,0 +1,19 @@
+query getAllMovies {
+  movies{
+    _id,
+    movie_url,
+    name,
+    sinopsis,
+    rate,
+    rating
+  }
+}
+
+query findMovieById {
+  movie( id: "5bf4cfe9f29d95248d55f2cf" ) {
+    _id,
+    movie_url,
+    name,
+    sinopsis
+  }
+}

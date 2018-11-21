@@ -1,0 +1,22 @@
+mutation actualizarMovie($movieU: MovieUpdateInput!) {
+  updateMovie(id:"5bf4e3933b75df31f2c6607d", data: $movieU) {
+    _id,
+    name,
+    movie_url,
+    rating,
+    sinopsis
+  }
+}
+
+mutation eliminarMovie {
+  deleteMovie(id: "5bf4e24b14a5c23072610832")
+}
+
+#Query variables
+{
+  "movieU": {
+    "rating": 4.5,
+    "sinopsis": "Sinopsis actualizada 2"
+  }
+}
+

@@ -1,0 +1,24 @@
+mutation registerUser {
+  singup(
+    data: {
+      first_name: "pablo",
+      last_name: "Cardenas",
+      email: "pato19@pato.com",
+      user_name: "pcardenas",
+      password: "123"
+    }
+  ) {
+    token,
+    id
+  }
+}
+
+mutation InicioSesion {
+  login(
+    user: "pato19@pato.com",
+    password: "123"
+  ){
+    token,
+    id
+  }
+}

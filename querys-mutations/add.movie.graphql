@@ -1,0 +1,28 @@
+mutation addMovie($movie: MovieInput!) {
+    createMovie(data: $movie){
+        _id,
+        name,
+        sinopsis
+  }
+}
+
+
+
+#Query variables
+{
+  "movie":{
+    "name":"Star Wars Episode IV",
+    "sinopsis": "Lorem ipsum dolor sit amet,At vero eos et accusam et justo duo dolores et ea rebum.",
+    "genre": "DRAMA",
+    "director":"George Lucas",
+    "cast":[{"name": "Mark Hamill","age":70}],
+    "duration": "123 minutes",
+    "released_date": "1974-04-04",
+    "rate": "B",
+    "language": "English",
+    "cover": "https://sc-events.s3.amazonaws.com/4568806/main.jpg",
+    "movie_url": "https://www.youtube.com/watch?v=vZ734NWnAHA",
+    "rating": 0.0
+  }
+}
+
