@@ -1,10 +1,16 @@
+#import Movie, MovieInput, MovieUpdateInput from './graphql/movies.graphql'
 type Query {
-    prueba:String!
+    prueba:String!,
+    movies: [Movie!]!,
+    movie( id: ID ): Movie
 }
 
 type Mutation {
     signup(data: UserInput! ): AuthToken,
-    login( email: String!, password: String! ): AuthToken
+    login( email: String!, password: String! ): AuthToken,
+    createMovie( data: MovieInput! ): Movie,
+    updateMovie( id: String!, data: MovieUpdateInput! ): Movie,
+    deleteMovie( id: String ): String
 }
 
 input UserInput {

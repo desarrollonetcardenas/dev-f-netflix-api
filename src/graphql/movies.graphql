@@ -1,0 +1,71 @@
+type Movie {
+    _id: String,
+    name: String,
+    genre: Genre,
+    director: String,
+    cast: [Cast],
+    sinopsis: String,
+    duration: String,
+    released_date: String,
+    rating: Float,
+    rate: Rate,
+    language: String,
+    cover: String,
+    movie_url: String,
+    is_active: Boolean
+}
+
+input MovieInput {
+    name: String!,
+    genre: Genre!,
+    director: String!
+    cast: [CastInput!],
+    sinopsis: String,
+    duration: String!,
+    released_date: String!,
+    rating: Float!,
+    rate: Rate!,
+    language: String!,
+    cover: String!,
+    movie_url: String!
+}
+
+input MovieUpdateInput {
+    name: String,
+    genre: Genre,
+    director: String
+    cast: [CastInput],
+    sinopsis: String,
+    duration: String,
+    released_date: String,
+    rating: Float,
+    rate: Rate,
+    language: String,
+    cover: String,
+    movie_url: String
+}
+
+type Cast {
+    name: String!,
+    age: Int
+}
+
+input CastInput {
+    name: String!,
+    age: Int
+}
+
+enum Genre {
+    ACTION,
+    SCIFI,
+    DRAMA,
+    COMEDY,
+    HORROR
+}
+
+enum Rate {
+    A,
+    B,
+    C,
+    B15
+}
