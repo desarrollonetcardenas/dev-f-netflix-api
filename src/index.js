@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const Mutation = require('./resolvers/Mutations');
 const Query = require('./resolvers/Query');
-
+const verifyToken = require('./utils/verifyToken');
 
 /**
  * Mongo Db connection string
@@ -38,7 +38,8 @@ const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
   context: req => ({
-    ...req
+    ...req,
+    user: verifyToken( req )
   })
 });
 

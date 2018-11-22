@@ -2,6 +2,7 @@ const Users = require('../schemas/Users');
 const createToken = require('../utils/createToken');
 const comparePasswords = require('../utils/comparePasswords');
 const Movies = require('../schemas/Movies');
+const Subscriptions = require('../schemas/Subscriptions');
 
 function signup(_, args, context, info) {
 
@@ -73,10 +74,24 @@ function deleteMovie(_, args, context, info) {
     });
 }
 
+function upgradeSubscriptions(_, args, context, info) {
+    if( !context.user ) throw new Error("Authentication is required");
+
+    const { subscription_id, user_payment } = context.user;
+    Subscriptions.findById( subscription_id).then( (subscription) => {
+        subscription.upgrade(args.type, user_payment, (err, created) => {
+            if( err ) throw err;
+            if( created )
+                return "Subscription created successfully";
+        });
+    });
+}
+
 module.exports = {
     signup,
     login,
     createMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    upgradeSubscriptions
 };

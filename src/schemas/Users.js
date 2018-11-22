@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const SALT_WORK_FACTOR = 10;
+
+const createSubscriptions = require('../utils/createSubscriptions');
+const createCustomer = require('../utils/createCustomer');
 
 const Schema = mongoose.Schema;
+const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
   first_name: {
@@ -39,6 +42,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "subscriptions"
   },
+  subscription_id: {
+    type: String
+  },
   history: [{
     type: Schema.Types.ObjectId,
     ref: 'movies'
@@ -70,9 +76,17 @@ UserSchema.pre('save', function (next) {
 
     if( err ) return next( err );
 
-    bcrypt.hash(user.password, salt, function (err, hash) {
+    bcrypt.hash(user.password, salt, async function (err, hash) {
       if (err) return next(err);
+
       user.password = hash;
+
+      const { _id } = await createSubscriptions();
+      user.subscription_id = _id;
+
+      const { id } = await createCustomer( user.email );
+      user.user_payment = id;
+
       next();
     });
 

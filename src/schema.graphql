@@ -10,7 +10,8 @@ type Mutation {
     login( email: String!, password: String! ): AuthToken,
     createMovie( data: MovieInput! ): Movie,
     updateMovie( id: String!, data: MovieUpdateInput! ): Movie,
-    deleteMovie( id: String ): String
+    deleteMovie( id: String ): String,
+    upgradeSubscriptions(type: Subscriptions!): String
 }
 
 input UserInput {
@@ -22,6 +23,13 @@ input UserInput {
     gender: Gender,
     nationality: String
 }
+
+enum Subscriptions {
+    BASIC,
+    GOLD,
+    PREMIUM
+}
+
 
 enum Gender {
     Male,

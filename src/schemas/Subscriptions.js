@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const subscriptionSchema = new Schema({
     type_subscription: {
         type:String,
-        enum:["basic","normal","premium"],
+        enum:["basic","gold","premium"],
         required: true
     },
     price: {
@@ -24,8 +24,15 @@ const subscriptionSchema = new Schema({
     is_active: {
         type:Boolean,
         default: false
+    },
+    stripe_id: {
+        type: String
     }
 },{ 'collection':'subscriptions', 'timestamps': true });
 
+
+subscriptionSchema.methods.upgrade = function(type, customer, callback) {
+
+}
 
 module.exports = mongoose.model('subscriptions', subscriptionSchema);
