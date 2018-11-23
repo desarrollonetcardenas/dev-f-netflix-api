@@ -38,12 +38,9 @@ const UserSchema = new Schema({
   user_payment: {
     type: String
   },
-  subscription: {
-    type: Schema.Types.ObjectId,
-    ref: "subscriptions"
-  },
-  subscription_id: {
-    type: String
+  subscription_id:{
+    type:Schema.Types.ObjectId,
+    ref:"subscriptions"
   },
   history: [{
     type: Schema.Types.ObjectId,

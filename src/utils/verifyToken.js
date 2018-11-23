@@ -10,8 +10,6 @@ module.exports = function( {request} ) {
         const token = Authorization.replace( 'JWT ', '');
         const { id } = jwt.verify( token, SECRET_KEY );
 
-        return Users.findById(id).then((user) => {
-            return user;
-        });
+        return Users.findById(id);
     }
 }

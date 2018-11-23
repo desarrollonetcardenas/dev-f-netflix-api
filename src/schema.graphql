@@ -2,7 +2,8 @@
 type Query {
     prueba:String!,
     movies: [Movie!]!,
-    movie( id: ID ): Movie
+    movie( id: ID ): Movie,
+    me: User
 }
 
 type Mutation {
@@ -11,7 +12,8 @@ type Mutation {
     createMovie( data: MovieInput! ): Movie,
     updateMovie( id: String!, data: MovieUpdateInput! ): Movie,
     deleteMovie( id: String ): String,
-    upgradeSubscriptions(type: Subscriptions!): String
+    upgradeSubscriptions(type: Subscriptions!): String,
+    addSource( source: String! ): String
 }
 
 input UserInput {
@@ -24,11 +26,7 @@ input UserInput {
     nationality: String
 }
 
-enum Subscriptions {
-    BASIC,
-    GOLD,
-    PREMIUM
-}
+
 
 
 enum Gender {
@@ -39,4 +37,34 @@ enum Gender {
 type AuthToken {
     token: String!,
     id: String!
+}
+
+
+type User {
+    first_name: String!,
+    last_name: String!,
+    email: String!,
+    birth_date: String!,
+    gender: Gender,
+    nationality: String,
+    history: [Movie],
+    favorites: [Movie],
+    subscription_id: Subscription,
+    is_active: Boolean,
+    user_payment: String
+}
+
+type Subscription {
+    type_subscription: Subscriptions,
+    start_date: String,
+    end_date: String,
+    is_active: Boolean,
+    price: String,
+    stripe_id: String
+}
+
+enum Subscriptions {
+    BASIC,
+    GOLD,
+    PREMIUM
 }

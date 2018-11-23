@@ -1,24 +1,22 @@
 mutation registerUser {
-  singup(
+  signup(
     data: {
       first_name: "pablo",
       last_name: "Cardenas",
-      email: "pato19@pato.com",
-      user_name: "pcardenas",
-      password: "123"
+      email: "pato55@pato.com",
+      password: "123",
+      birth_date: "1990-01-01"
     }
   ) {
-    token,
-    id
+    token
   }
 }
 
 mutation InicioSesion {
   login(
-    user: "pato19@pato.com",
+    email: "pato19@pato.com",
     password: "123"
   ){
-    token,
-    id
+    token
   }
 }

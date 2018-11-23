@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const subscriptionSchema = new Schema({
     type_subscription: {
         type:String,
-        enum:["basic","gold","premium"],
+        enum:["BASIC","GOLD","PREMIUM"],
         required: true
     },
     price: {
-        type:Number,
+        type:String,
         enum:["0", "19", "99"],
         required: true
     },
@@ -29,10 +29,5 @@ const subscriptionSchema = new Schema({
         type: String
     }
 },{ 'collection':'subscriptions', 'timestamps': true });
-
-
-subscriptionSchema.methods.upgrade = function(type, customer, callback) {
-
-}
 
 module.exports = mongoose.model('subscriptions', subscriptionSchema);

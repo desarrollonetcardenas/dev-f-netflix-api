@@ -1,4 +1,5 @@
 const Movies = require('../schemas/Movies');
+const Users = require('../schemas/Users');
 
 function prueba(_, args, context, info) {
     return "Esto es una prueba en graphql";
@@ -26,9 +27,21 @@ function movie(_, args, context, info) {
     );
 }
 
+function me(_, args, context, info) {
+    if( !context.user )
+        throw new Error( "Authentication is required" );
+
+    return Users.findById( context.user._id )
+                .populate("subscription_id")
+                .then( (user) => {
+                    return user;
+                })
+                .catch((err) => { throw err; });
+}
 
 module.exports = {
     prueba,
     movie,
-    movies
+    movies,
+    me
 };

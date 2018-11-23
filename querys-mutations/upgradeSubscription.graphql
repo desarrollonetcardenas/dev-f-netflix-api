@@ -1,0 +1,28 @@
+# Write your query or mutation her
+mutation subscriptionUpgrade {
+  upgradeSubscriptions(type: PREMIUM)
+}
+
+query userProfile {
+  me{
+    first_name,
+    email,
+    subscription_id{
+      type_subscription,
+      start_date,
+      end_date,
+      price,
+      stripe_id
+    }
+  }
+}
+
+
+mutation addingSource {
+  addSource(source:"tok_mx")
+}
+
+# Http Headers
+# {
+#   "Authorization": "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViZjc2NGYyNzcxNzBmMWFmOGVjM2Q1NyIsImVtYWlsIjoicGF0bzU1QHBhdG8uY29tIiwiaWF0IjoxNTQyOTQzMjM4fQ.gexJonZkOwYy64u5W9GQpqw3Tth_9y1IVwUKwDGzzUk"
+# }
