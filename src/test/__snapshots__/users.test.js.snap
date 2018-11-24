@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register user works correctly Should create user correctly 1`] = `
+Object {
+  "data": Object {
+    "signup": null,
+  },
+  "errors": Array [
+    [GraphQLError: E11000 duplicate key error collection: test.users index: email_1 dup key: { : "prueba3@email.com" }],
+  ],
+}
+`;

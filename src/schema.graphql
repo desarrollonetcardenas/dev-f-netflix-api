@@ -21,7 +21,7 @@ input UserInput {
     last_name: String!,
     email: String!,
     password: String!,
-    birth_date: String!,
+    birth_date: String,
     gender: Gender,
     nationality: String
 }
