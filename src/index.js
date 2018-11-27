@@ -9,15 +9,16 @@ const typeDefs = importSchema('./src/schema.graphql');
 const Mutation = require('./resolvers/Mutations');
 const Query = require('./resolvers/Query');
 const verifyToken = require('./utils/verifyToken');
+const { TEST_MONGO_URI, MONGO_URI } = require('./const');
 
 /**
  * Mongo Db connection string
  *
  *
  */
-const MONGO_URL = 'mongodb://admin:xQTSZl2Zy6OQreuf@cluster0-shard-00-00-sdkax.mongodb.net:27017,cluster0-shard-00-01-sdkax.mongodb.net:27017,cluster0-shard-00-02-sdkax.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true';
+const mongoUri = process.env.NODE_ENV === "test" ? TEST_MONGO_URI : MONGO_URI
 
-mongoose.connect(MONGO_URL, {
+mongoose.connect(mongoUri, {
   useNewUrlParser: true
 });
 
@@ -51,9 +52,13 @@ const server = new GraphQLServer({
 });
 
 const options = {
-  port: 8002,
+  port: process.env.PORT || 8002,
   endpoint: '/graphql',
-  playground: '/playground'
+  playground: '/playground',
+  cors: {
+    credentials: true,
+    origin: ["http://localhost:3000"]
+  }
 };
 
 server.start(options,
