@@ -1,5 +1,6 @@
 const Movies = require('../schemas/Movies');
 const Users = require('../schemas/Users');
+const InstagramPosts = require('../schemas/InstagramPosts');
 
 function prueba(_, args, context, info) {
     return "Esto es una prueba en graphql";
@@ -39,9 +40,22 @@ function me(_, args, context, info) {
                 .catch((err) => { throw err; });
 }
 
+
+function findPostByUserId(_,args,context,info) {
+    return InstagramPosts.find({ user_id: args.data.user_id}).then(
+        (posts) => {
+            return posts;
+        }
+    )
+    .catch(error => {
+        throw new Error(error);
+    });
+}
+
 module.exports = {
     prueba,
     movie,
     movies,
-    me
+    me,
+    findPostByUserId
 };

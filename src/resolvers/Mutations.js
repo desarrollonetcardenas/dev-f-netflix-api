@@ -7,6 +7,7 @@ const upgradeSub = require('../utils/upgradeSubscription');
 
 const { SECRET_KEY_STRIPE } = require('../const');
 const stripe = require('stripe')(SECRET_KEY_STRIPE);
+const InstagramPost = require('../schemas/InstagramPosts');
 
 function signup(_, args, context, info) {
 
@@ -121,6 +122,20 @@ function addSource(_, args, context, info) {
     });
 }
 
+
+function createInstagramPost(_, args, context, info) {
+
+    return InstagramPost.create( args.data ).then(
+        (posts) => {
+            console.log('Post created with id: ', posts._id);
+            return posts;
+        },
+        (err) => {
+            throw new Error( err );
+        }
+    );
+}
+
 module.exports = {
     signup,
     login,
@@ -128,5 +143,6 @@ module.exports = {
     updateMovie,
     deleteMovie,
     upgradeSubscriptions,
-    addSource
+    addSource,
+    createInstagramPost
 };

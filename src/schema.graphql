@@ -3,7 +3,8 @@ type Query {
     prueba:String!,
     movies: [Movie!]!,
     movie( id: ID ): Movie,
-    me: User
+    me: User,
+    findPostByUserId(user_id:String!): [PostInput!]!
 }
 
 type Mutation {
@@ -13,7 +14,27 @@ type Mutation {
     updateMovie( id: String!, data: MovieUpdateInput! ): Movie,
     deleteMovie( id: String ): String,
     upgradeSubscriptions(type: Subscriptions!): String,
-    addSource( source: String! ): String
+    addSource( source: String! ): String,
+    createInstagramPost(data: PostInput!): String
+}
+
+input PostInput {
+    user_id: String!,
+    photo: String!,
+    likes: [LikeInput],
+    comments: [CommentInput]
+}
+
+
+
+input LikeInput {
+    user_id: String,
+    user_name: String
+}
+
+input CommentInput {
+    user_id:String!,
+    user_comment:String!
 }
 
 input UserInput {
@@ -25,9 +46,6 @@ input UserInput {
     gender: Gender,
     nationality: String
 }
-
-
-
 
 enum Gender {
     Male,

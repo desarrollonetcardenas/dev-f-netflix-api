@@ -1,0 +1,20 @@
+# Write your query or mutation here
+mutation newPost($data: PostInput!){
+  createInstagramPost(data: $data)
+}
+
+#Query Variable
+{
+  "data":{
+    "user_id": "33",
+    "photo": "mifoto",
+    "likes": [
+      {"user_id": "1", "user_name":"Jose"},
+      {"user_id": "2", "user_name":"Mario"}
+    ],
+    "comments": [
+      {"user_id":"2","user_comment":"asfasfasdf"},
+      {"user_id":"3","user_comment":"otro comentario"}
+    ]
+  }
+}
