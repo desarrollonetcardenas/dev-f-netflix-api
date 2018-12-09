@@ -18,3 +18,15 @@ mutation newPost($data: PostInput!){
     ]
   }
 }
+
+#----------------------------------------------------------------------------------------
+# Write your query or mutation here
+query getPosts{
+  findPostByUserId(user_id: 33){
+    _id,
+    user_id,
+    photo,
+    likes{user_id,user_name},
+    comments{user_id,user_comment}
+  }
+}

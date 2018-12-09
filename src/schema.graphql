@@ -4,7 +4,25 @@ type Query {
     movies: [Movie!]!,
     movie( id: ID ): Movie,
     me: User,
-    findPostByUserId(user_id:String!): [PostInput!]!
+    #findPostByUserId(id: ID): [PostOutput!]!,
+    findPostByUserId(user_id: Int!): [PostOutput]
+}
+
+type PostOutput {
+    _id: String
+    user_id: String,
+    photo: String,
+    likes: [LikeOutput],
+    comments: [CommentOutput]
+}
+
+type LikeOutput {
+   user_id:String,
+   user_name:String
+}
+type CommentOutput {
+   user_id:String,
+   user_comment:String
 }
 
 type Mutation {

@@ -42,9 +42,9 @@ function me(_, args, context, info) {
 
 
 function findPostByUserId(_,args,context,info) {
-    return InstagramPosts.find({ user_id: args.data.user_id}).then(
-        (posts) => {
-            return posts;
+    return InstagramPosts.find({user_id: args.user_id}).then(
+        (publicaciones) => {
+            return publicaciones;
         }
     )
     .catch(error => {
